@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using ToDo.Api_.Data;
@@ -13,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
-
+builder.Services.AddValidation();
 builder.Services.AddAutoMapper(cfg => 
 {
     cfg.CreateMap<CreateToDoItemDto, ToDoItem>();
